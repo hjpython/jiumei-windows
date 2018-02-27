@@ -56,12 +56,12 @@ def xiazai_jiumei(url):
                 print(e.code)
                 sql(url)
                 print('未下载网址已存入数据库')
-                continue
             elif hasattr(e,"reason"):
                 print(e.reason)
                 sql(url)
                 print('未下载网址已存入数据库')
-                continue
+        finally:
+            continue
 
 def xiazai_jiumei_sql(url):
     driver = webdriver.PhantomJS(executable_path='D:\\software\\an\\python3.5.2\\Lib\\phantomjs\\bin\\phantomjs')
@@ -78,7 +78,6 @@ def xiazai_jiumei_sql(url):
     except:
         shutil.rmtree("D:\\temp\\pic\\jiumei\\" + title + page)
         os.makedirs("D:\\temp\\pic\\jiumei\\" + title + page)
-
     pages = page + 1
     for i in range(1,pages):
         try:
