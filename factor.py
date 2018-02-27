@@ -34,12 +34,12 @@ def xiazai_jiumei(url):
     page = soup.find("div",{"class": "column"}).find('span').get_text()
     pattern = re.compile('\d*')
     page = pattern.findall(page)
-    page = int(page[0])
+    page = page[0]
     try:
         os.makedirs("D:\\temp\\pic\\jiumei\\" + title + page)
     except:
         return
-    pages = page + 1
+    pages = int(page) + 1
     for i in range(1,pages):
         try:
             urll = url + '?url='+str(i)
@@ -72,13 +72,13 @@ def xiazai_jiumei_sql(url):
     page = soup.find("div", {"class": "column"}).find('span').get_text()
     pattern = re.compile('\d*')
     page = pattern.findall(page)
-    page = int(page[0])
+    page = page[0]
     try:
         os.makedirs("D:\\temp\\pic\\jiumei\\" + title + page)
     except:
         shutil.rmtree("D:\\temp\\pic\\jiumei\\" + title + page)
         os.makedirs("D:\\temp\\pic\\jiumei\\" + title + page)
-    pages = page + 1
+    pages = int(page) + 1
     for i in range(1,pages):
         try:
             urll = url + '?url=' + str(i)
