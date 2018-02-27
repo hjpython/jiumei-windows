@@ -21,7 +21,7 @@ def rename(url):
         return
 
 if __name__ == '__main__':
-    p = Pool(16)
+    p = Pool(10)
     #更改第1页的名字
     url = 'http://www.99mm.me/xinggan/'
     print('第1页')
