@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 import os,re
 import urllib.error
 from selenium import webdriver
-from multiprocessing import Pool
 
 def rename(url):
     driver = webdriver.PhantomJS(executable_path='D:\\software\\an\\python3.5.2\\Lib\\phantomjs\\bin\\phantomjs')
@@ -21,8 +20,8 @@ def rename(url):
         return
 
 if __name__ == '__main__':
-    p = Pool(50)
     #更改第1页的名字
+    url = 'http://www.99mm.me/xinggan/'
     print('第1页')
     html = urllib.request.urlopen(url).read()
     urls = BeautifulSoup(html, 'lxml').findAll('a', href=re.compile("/xinggan/\d*?\.html"))
@@ -34,7 +33,7 @@ if __name__ == '__main__':
     quchong = list(set(quchong))
     for url in quchong:
         print(url)
-        p.apply_async(rename, args=(url,))
+        rename(url)
 
     # 更改第2到95页的名字
     for i in range(2,96):
@@ -50,7 +49,5 @@ if __name__ == '__main__':
         quchong = list(set(quchong))
         for url in quchong:
             print(url)
-            p.apply_async(rename, args=(url,))
-    p.close()
-    p.join()
+            rename(url)
     print('恭喜您，已全部更改完毕')
